@@ -1,0 +1,18 @@
+# Spring Boot
+RevPasswordManager/target/
+*.log
+
+# Angular
+RevPasswordManager_Frontend/node_modules/
+RevPasswordManager_Frontend/dist/
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
