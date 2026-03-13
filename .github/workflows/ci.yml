@@ -2,7 +2,8 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
 
@@ -15,28 +16,33 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Login DockerHub
+
+      - name: Login to DockerHub
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login \
           -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
+
       - name: Build Backend Image
         run: |
           docker build \
-            -t ${{ secrets.DOCKER_USERNAME }}/password-manager-backend:latest \
-            -f RevPasswordManager/RevPasswordManager/Dockerfile \
-            RevPasswordManager/RevPasswordManager
+          -t ${{ secrets.DOCKER_USERNAME }}/password-manager-backend:latest \
+          -f RevPasswordManager/RevPasswordManager/Dockerfile \
+          RevPasswordManager/RevPasswordManager
+
 
       - name: Push Backend Image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/password-manager-backend:latest
 
+
       - name: Build Frontend Image
         run: |
           docker build \
-            -t ${{ secrets.DOCKER_USERNAME }}/password-manager-frontend:latest \
-            -f RevPasswordManager_Frontend/rev-password-manager-frontend/Dockerfile \
-            RevPasswordManager_Frontend/rev-password-manager-frontend
+          -t ${{ secrets.DOCKER_USERNAME }}/password-manager-frontend:latest \
+          -f RevPasswordManager_Frontend/rev-password-manager-frontend/Dockerfile \
+          RevPasswordManager_Frontend/rev-password-manager-frontend
+
 
       - name: Push Frontend Image
         run: |
