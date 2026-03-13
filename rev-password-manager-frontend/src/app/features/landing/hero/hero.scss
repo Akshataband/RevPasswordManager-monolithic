@@ -1,0 +1,55 @@
+.hero {
+  padding: 140px 0 100px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+/* LEFT SIDE */
+.left {
+  flex: 1;
+}
+
+.left h1 {
+  font-size: 52px;
+  margin-bottom: 20px;
+  color: var(--neon);
+  line-height: 1.2;
+}
+
+.left p {
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+/* RIGHT SIDE */
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.right .glow-box {
+  width: 380px;
+  height: 380px;
+  border-radius: 30px;
+  background: linear-gradient(145deg, #0f1c24, #08121a);
+  box-shadow: 0 0 80px var(--neon-glow);
+}

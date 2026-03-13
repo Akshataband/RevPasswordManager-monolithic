@@ -1,0 +1,40 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+<div *ngIf="!isLoading">
+<div class="dashboard-container">
+
+  <div class="stats-grid">
+    <app-stats-card
+      title="Total Passwords"
+      [value]="data?.totalPasswords">
+    </app-stats-card>
+
+    <app-stats-card
+      title="Weak Passwords"
+      [value]="data?.weakPasswords"
+      [highlight]="data?.weakPasswords > 0">
+    </app-stats-card>
+
+    <app-stats-card
+      title="Reused Passwords"
+      [value]="data?.reusedPasswords"
+      [highlight]="data?.reusedPasswords > 0">
+    </app-stats-card>
+
+    <app-stats-card
+      title="Security Score"
+      [value]="securityScore">
+    </app-stats-card>
+  </div>
+
+  <div class="recent-section">
+    <h3>Recently Added</h3>
+
+    <div class="recent-card" *ngFor="let item of data?.recentPasswords">
+      <span>{{ item.accountName }}</span>
+      <span>{{ item.category }}</span>
+    </div>
+  </div>
+
+</div>
+</div>

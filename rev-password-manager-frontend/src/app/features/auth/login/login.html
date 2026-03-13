@@ -1,0 +1,49 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+
+    <h1>Welcome</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <label for="username">Username or Email</label>
+      <input
+        id="username"
+        type="text"
+        formControlName="username"
+        placeholder="Enter username or email"
+      />
+
+      <label for="password">Master Password</label>
+      <div class="password-wrapper">
+        <input
+          id="password"
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="masterPassword"
+          placeholder="Enter master password"
+        />
+        <span class="eye" (click)="showPassword = !showPassword">
+          {{ showPassword ? '🙈' : '👁️' }}
+        </span>
+      </div>
+<button type="submit" [disabled]="loading">
+  {{ loading ? 'Logging in...' : 'Login' }}
+</button>
+
+<p class="error" *ngIf="errorMessage">
+  {{ errorMessage }}
+</p>
+
+      <div class="auth-links">
+        <a routerLink="/register" class="link-primary">
+          Create account
+        </a>
+
+        <a routerLink="/forgot-password" class="link-secondary">
+          Forgot Password?
+        </a>
+      </div>
+
+    </form>
+
+  </div>
+</div>

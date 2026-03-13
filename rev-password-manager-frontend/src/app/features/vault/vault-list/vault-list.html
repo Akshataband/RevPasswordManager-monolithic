@@ -1,0 +1,119 @@
+<div class="vault-container">
+
+  <!-- HEADER -->
+  <div class="vault-header">
+
+    <input
+      type="text"
+      placeholder="Search..."
+      [(ngModel)]="search"
+      (input)="applyFilters()" />
+
+    <label for="categorySelect">Category</label>
+
+    <select
+      id="categorySelect"
+      [(ngModel)]="category"
+      (change)="applyFilters()">
+
+      <option value="">All</option>
+      <option *ngFor="let c of categories" [value]="c">
+        {{ c }}
+      </option>
+
+    </select>
+
+    <button type="button" (click)="changeSort('accountName')">
+      Sort by Name
+    </button>
+
+    <button type="button" (click)="changeSort('createdAt')">
+      Sort by Created
+    </button>
+
+    <button type="button" (click)="goToAdd()">
+      Add Password
+    </button>
+
+    <button type="button" (click)="toggleShowFavorites()">
+      {{ showFavorites ? 'Show All' : 'Show Favorites' }}
+    </button>
+
+  </div>
+
+  <!-- LOADING -->
+  <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+  <!-- GRID -->
+  <div class="vault-grid" *ngIf="!loading">
+
+    <div *ngIf="passwords.length === 0">
+      No passwords found.
+    </div>
+
+    <div *ngFor="let p of passwords; trackBy: trackById" class="vault-card">
+
+      <h3>{{ p.accountName }}</h3>
+
+      <p><strong>Website:</strong> {{ p.website }}</p>
+      <p><strong>Username:</strong> {{ p.username }}</p>
+      <p><strong>Category:</strong> {{ p.category }}</p>
+
+      <p><small>Created: {{ p.createdAt | date:'short' }}</small></p>
+
+      <div class="card-actions">
+
+        <button type="button" (click)="viewPassword(p.id)">View</button>
+        <button type="button" (click)="editPassword(p.id)">Edit</button>
+        <button type="button" (click)="confirmDelete(p.id)">Delete</button>
+
+        <button
+          type="button"
+          class="favorite-btn"
+          [class.active]="p.favorite"
+          (click)="toggleFavorite(p)">
+
+          {{ p.favorite ? '★' : '☆' }}
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button type="button" (click)="prevPage()" [disabled]="page === 0">Prev</button>
+
+    <button
+      type="button"
+      *ngFor="let p of pageNumbers"
+      (click)="goToPage(p)"
+      [class.active]="page === p">
+      {{ p + 1 }}
+    </button>
+
+    <button
+      type="button"
+      (click)="nextPage()"
+      [disabled]="page === totalPages - 1">
+      Next
+    </button>
+  </div>
+
+</div>
+
+<app-confirm-dialog
+  *ngIf="deleteId"
+  [message]="'Are you sure you want to delete this password?'"
+  (onConfirm)="deletePassword()"
+  (onCancel)="deleteId = null">
+</app-confirm-dialog>
+
+<app-view-password-modal
+  *ngIf="selectedId !== null"
+  [passwordId]="selectedId"
+  (close)="closeModal()">
+</app-view-password-modal>

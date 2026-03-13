@@ -1,0 +1,71 @@
+.audit-container {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.audit-wrapper {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+.audit-wrapper h2 {
+  color: var(--neon);
+  margin-bottom: 40px;
+}
+
+.input-section {
+  margin-bottom: 30px;
+}
+
+.input-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.input-row input {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--neon);
+  background: #111;
+  color: white;
+  min-width: 250px;
+}
+
+.audit-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.audit-card {
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid #13242f;
+  text-align: center;
+}
+
+.audit-card h3 {
+  color: var(--text-muted);
+  margin-bottom: 15px;
+}
+
+.audit-card p {
+  font-size: 32px;
+  color: var(--neon);
+  font-weight: bold;
+}
+
+.reset-btn {
+  margin-top: 40px;
+}
+
+.error {
+  color: #ff6b6b;
+  margin-top: 10px;
+}

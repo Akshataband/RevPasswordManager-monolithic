@@ -1,0 +1,83 @@
+<div class="layout">
+
+<aside class="sidebar">
+
+  <div>
+
+    <!-- LOGO -->
+    <div class="logo-wrapper">
+      <img src="assets/logo3.png" alt="Rev Logo" class="logo-img">
+    </div>
+
+    <!-- MAIN -->
+    <p class="menu-title">Main</p>
+
+    <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+      Dashboard
+    </a>
+
+      <a routerLink="/profile" routerLinkActive="active" class="nav-link">
+        Profile
+      </a>
+
+      <a routerLink="/change-password" routerLinkActive="active" class="nav-link">
+        Change Password
+      </a>
+
+      <!-- VAULT -->
+      <p class="menu-title">Vault</p>
+
+      <a routerLink="/vault" routerLinkActive="active" class="nav-link">
+        Vault
+      </a>
+
+      <a routerLink="/generator" routerLinkActive="active" class="nav-link">
+        Generator
+      </a>
+
+      <a routerLink="/backup" routerLinkActive="active" class="nav-link">
+        Backup
+      </a>
+
+      <!-- SECURITY -->
+      <p class="menu-title">Security</p>
+
+      <a routerLink="/security-audit" routerLinkActive="active" class="nav-link">
+        Security Audit
+      </a>
+
+      <a routerLink="/security-alerts" routerLinkActive="active" class="nav-link">
+        Security Alerts
+      </a>
+
+      <a routerLink="/security-questions" routerLinkActive="active" class="nav-link">
+        Security Questions
+      </a>
+
+      <a routerLink="/strength-analysis" routerLinkActive="active" class="nav-link">
+        Strength Analysis
+      </a>
+
+      <a routerLink="/two-factor" routerLinkActive="active" class="nav-link">
+        2FA Settings
+      </a>
+
+    </div>
+
+    <button class="logout-btn" (click)="logout()">
+      Logout
+    </button>
+
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <h3>Welcome {{ username }}</h3>
+    </header>
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+</div>

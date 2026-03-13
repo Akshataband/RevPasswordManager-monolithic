@@ -1,0 +1,61 @@
+<div class="generator-container">
+
+  <div class="generator-wrapper">
+
+    <h1>Password Generator</h1>
+
+    <form class="generator-form" [formGroup]="form">
+      <div class="form-group">
+        <label for="length">Length</label>
+        <input id="length" type="number" formControlName="length" min="8" max="64" />
+      </div>
+
+      <div class="form-group">
+        <label for="count">Count</label>
+        <input id="count" type="number" formControlName="count" min="1" max="10" />
+      </div>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" formControlName="includeUppercase"> Uppercase</label>
+        <label><input type="checkbox" formControlName="includeLowercase"> Lowercase</label>
+        <label><input type="checkbox" formControlName="includeNumbers"> Numbers</label>
+        <label><input type="checkbox" formControlName="includeSpecial"> Special Characters</label>
+        <label><input type="checkbox" formControlName="excludeSimilar"> Exclude Similar (0,O,1,l)</label>
+      </div>
+
+      <button
+  type="button"
+  class="btn-primary"
+  (click)="generate()"
+  [disabled]="loading">
+  {{ loading ? 'Generating...' : 'Generate' }}
+</button>
+
+    </form>
+
+    <!-- GENERATED PASSWORDS -->
+    <div class="generated-list" *ngIf="passwords.length > 0">
+
+      <div class="password-card" *ngFor="let p of passwords">
+
+        <h3>{{ p.password }}</h3>
+
+        <p>
+          Strength:
+          <span [ngClass]="p.strength.toLowerCase()">
+            {{ p.strength }}
+          </span>
+        </p>
+
+        <div class="actions">
+          <button (click)="copy(p.password)">Copy</button>
+          <button (click)="save(p.password)">Save</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

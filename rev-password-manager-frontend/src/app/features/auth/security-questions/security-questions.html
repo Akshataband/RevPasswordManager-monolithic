@@ -1,0 +1,56 @@
+<div class="security-container">
+
+  <div class="security-wrapper">
+
+    <h2>Security Questions</h2>
+
+    <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+    <div *ngIf="!loading">
+
+      <!-- QUESTIONS -->
+      <div *ngFor="let item of answers" class="question-card">
+
+        <label class="question-text">
+          {{ item.question }}
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="item.answer"
+          placeholder="Enter new answer"
+        />
+
+      </div>
+
+      <!-- MASTER PASSWORD -->
+      <div class="confirm-section">
+        <input
+          type="password"
+          [(ngModel)]="masterPassword"
+          placeholder="Enter master password to confirm update"
+        />
+      </div>
+
+      <!-- MESSAGES -->
+      <div class="error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <div class="success" *ngIf="successMessage">
+        {{ successMessage }}
+      </div>
+
+      <!-- BUTTON -->
+      <button
+        class="btn-primary update-btn"
+        (click)="updateQuestions()"
+        [disabled]="loading">
+        Update Answers
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

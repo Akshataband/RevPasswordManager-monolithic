@@ -1,0 +1,69 @@
+<div class="vault-container">
+
+  <h1>Favorite Passwords ⭐</h1>
+
+  <div class="vault-grid">
+
+    <div class="vault-card"
+         *ngFor="let p of passwords">
+
+      <h3>{{ p.accountName }}</h3>
+      <p>{{ p.website }}</p>
+      <p>{{ p.username }}</p>
+
+      <div class="actions">
+
+        <button (click)="openViewModal(p.id)">
+          View
+        </button>
+
+        <button (click)="goToEdit(p.id)">
+          Edit
+        </button>
+
+        <button (click)="removeFavorite(p.id)">
+          Remove Favorite
+        </button>
+
+        <button (click)="delete(p.id)">
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 🔐 VIEW MODAL -->
+
+<div class="modal-overlay" *ngIf="showModal">
+
+  <div class="modal-card">
+
+    <h2>Verify Master Password</h2>
+
+    <label for="favMasterPass">Master Password</label>
+    <input
+      id="favMasterPass"
+      type="password"
+      [(ngModel)]="masterPassword"
+      placeholder="Enter master password"
+    />
+
+    <button (click)="confirmView()">Verify</button>
+    <button class="close-btn" (click)="closeModal()">Cancel</button>
+
+    <p class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+
+    <div *ngIf="decryptedPassword" class="password-box">
+      <strong>Password:</strong> {{ decryptedPassword }}
+    </div>
+
+  </div>
+
+</div>

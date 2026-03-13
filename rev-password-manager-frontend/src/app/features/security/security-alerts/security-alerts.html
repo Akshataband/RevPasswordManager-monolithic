@@ -1,0 +1,45 @@
+<div class="alerts-container">
+
+  <div class="alerts-wrapper">
+
+    <h2>Security Alerts</h2>
+
+    <!-- Input Section -->
+    <div *ngIf="!alertsLoaded" class="input-section">
+
+      <div class="input-row">
+        <input type="password" [(ngModel)]="masterPassword" placeholder="Enter master password" />
+
+        <button class="btn-primary" (click)="loadAlerts()" [disabled]="loading">
+          {{ loading ? 'Loading...' : 'Load Alerts' }}
+        </button>
+      </div>
+
+      <div class="error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+    </div>
+
+    <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+    <!-- Alerts List -->
+    <div *ngIf="alertsLoaded && !loading" class="alerts-list">
+
+      <div *ngIf="alerts.length === 0" class="empty-state">
+        No security alerts found.
+      </div>
+
+      <div *ngFor="let alert of alerts" class="alert-card">
+        {{ alert }}
+      </div>
+
+      <button class="btn-outline reset-btn" (click)="reset()">
+        Check Again
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

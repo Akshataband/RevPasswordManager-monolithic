@@ -1,0 +1,31 @@
+<div class="strength-container">
+
+  <div class="strength-card">
+
+    <h2>Password Strength Analysis</h2>
+
+    <div class="password-wrapper">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        [(ngModel)]="password"
+        placeholder="Enter password"
+      />
+
+      <span class="eye" (click)="showPassword = !showPassword">
+        {{ showPassword ? '🙈' : '👁️' }}
+      </span>
+    </div>
+
+    <button
+  (click)="checkStrength()"
+  [disabled]="loading">
+  {{ loading ? 'Checking...' : 'Check' }}
+</button>
+
+    <p *ngIf="strength">
+      Strength: <strong>{{ strength }}</strong>
+    </p>
+
+  </div>
+
+</div>

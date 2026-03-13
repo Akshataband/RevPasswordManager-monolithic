@@ -1,0 +1,94 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+
+    <h1>Create Account</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <!-- ✅ NAME -->
+      <label for="reg-name">Full Name</label>
+      <input
+        id="reg-name"
+        formControlName="name"
+        placeholder="Enter full name"
+      />
+
+      <!-- USERNAME -->
+      <label for="reg-username">Username</label>
+      <input
+        id="reg-username"
+        formControlName="username"
+        placeholder="Enter username"
+      />
+
+      <!-- EMAIL -->
+      <label for="reg-email">Email</label>
+      <input
+        id="reg-email"
+        formControlName="email"
+        placeholder="Enter email"
+      />
+
+      <!-- PASSWORD -->
+      <!-- PASSWORD -->
+<label for="reg-pass">Master Password</label>
+<div class="password-wrapper">
+  <input
+    id="reg-pass"
+    [type]="showPassword ? 'text' : 'password'"
+    formControlName="masterPassword"
+    placeholder="Enter master password"
+  />
+  <span class="eye" (click)="showPassword = !showPassword">
+    {{ showPassword ? '🙈' : '👁️' }}
+  </span>
+</div>
+
+<!-- CONFIRM -->
+<label for="reg-confirm">Confirm Password</label>
+<div class="password-wrapper">
+  <input
+    id="reg-confirm"
+    [type]="showConfirmPassword ? 'text' : 'password'"
+    formControlName="confirmPassword"
+    placeholder="Confirm password"
+  />
+  <span class="eye" (click)="showConfirmPassword = !showConfirmPassword">
+    {{ showConfirmPassword ? '🙈' : '👁️' }}
+  </span>
+</div>
+
+      <h3 style="color: var(--text-muted); margin-top: 20px;">
+        Security Questions
+      </h3>
+
+      <div formArrayName="securityAnswers">
+        <div *ngFor="let ctrl of securityAnswers.controls; let i = index">
+
+          <label>{{ fixedQuestions[i] }}</label>
+
+          <input
+            type="text"
+            [formControlName]="i"
+            placeholder="Enter answer"
+          />
+
+        </div>
+      </div>
+
+      <div class="button-wrapper">
+        <button type="submit" [disabled]="loading">
+          {{ loading ? 'Registering...' : 'Register' }}
+        </button>
+      </div>
+
+      <p class="error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </p>
+
+      <a routerLink="/login">already have account</a>
+
+    </form>
+
+  </div>
+</div>

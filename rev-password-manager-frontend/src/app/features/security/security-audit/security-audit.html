@@ -1,0 +1,52 @@
+<div class="audit-container">
+
+  <div class="audit-wrapper">
+
+    <h2>Security Audit</h2>
+
+    <!-- INPUT SECTION -->
+    <div *ngIf="!auditStarted" class="input-section">
+
+      <div class="input-row">
+        <input type="password" placeholder="Enter master password" [(ngModel)]="masterPassword" />
+
+        <button class="btn-primary" (click)="runAudit()" [disabled]="loading">
+          {{ loading ? 'Running...' : 'Run Audit' }}
+        </button>
+      </div>
+
+      <div class="error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+    </div>
+
+    <app-loading-spinner *ngIf="loading && !report"></app-loading-spinner>
+
+    <!-- RESULTS -->
+    <div *ngIf="report && !loading" class="audit-results">
+
+      <div class="audit-card">
+        <h3>Weak Passwords</h3>
+        <p>{{ report.weak }}</p>
+      </div>
+
+      <div class="audit-card">
+        <h3>Reused Passwords</h3>
+        <p>{{ report.reused }}</p>
+      </div>
+
+      <div class="audit-card">
+        <h3>Old Passwords</h3>
+        <p>{{ report.old }}</p>
+      </div>
+
+    </div>
+
+    <button *ngIf="report && !loading" class="btn-outline reset-btn" (click)="reset()">
+      Run Again
+    </button>
+
+  </div>
+
+</div>

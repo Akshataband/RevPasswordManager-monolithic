@@ -1,0 +1,100 @@
+.vault-container {
+  padding: 30px;
+  color: white;
+}
+
+.vault-header {
+  display: flex;
+  flex-wrap: wrap;  
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+input,
+select {
+  background: #111;
+  border: 1px solid #00ffcc;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 6px;
+  min-width: 150px;
+}
+
+button {
+  background: #00ffcc;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.vault-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.vault-card {
+  background: #111;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 14px;
+  border: 1px solid #00ffcc33;
+  box-shadow: 0 0 15px rgba(0,255,204,0.2);
+  transition: transform 0.2s ease;
+}
+
+.vault-card:hover {
+  transform: translateY(-3px);
+}
+
+.card-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.favorite-btn {
+  background: transparent;
+  border: 1px solid #00ffcc;
+  color: #00ffcc;
+  font-size: 18px;
+}
+
+.favorite-btn.active {
+  background: black;
+  color: #00ffcc;
+  border: 1px solid #00ffcc;
+}
+
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.pagination button {
+  background: #111;
+  border: 1px solid #00ffcc;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.pagination button.active {
+  background: #00ffcc;
+  color: black;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

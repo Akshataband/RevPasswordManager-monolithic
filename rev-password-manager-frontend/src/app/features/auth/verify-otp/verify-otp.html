@@ -1,0 +1,40 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+
+    <h1>OTP Verification</h1>
+
+    <form (ngSubmit)="submit()">
+
+      <label for="otp-code">Enter 6-digit OTP</label>
+
+      <input
+        id="otp-code"
+        type="text"
+        [(ngModel)]="otp"
+        name="otp"
+        maxlength="6"
+        placeholder="Enter OTP"
+        required
+      />
+
+      <div class="button-wrapper">
+        <button type="submit" [disabled]="loading">
+          {{ loading ? 'Verifying...' : 'Verify' }}
+        </button>
+      </div>
+
+      <div class="button-wrapper" style="margin-top: 15px;">
+        <button type="button"
+                (click)="resendOtp()">
+          Back to Login
+        </button>
+      </div>
+
+      <p class="error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </p>
+
+    </form>
+
+  </div>
+</div>

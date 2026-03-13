@@ -1,0 +1,31 @@
+.profile-container {
+  padding: 30px;
+}
+
+.profile-card {
+  max-width: 600px;
+  background: #0f1c24;
+  padding: 40px;
+  border-radius: 18px;
+  border: 1px solid #13242f;
+}
+
+.profile-card h2 {
+  margin-bottom: 30px;
+  color: var(--neon);
+}
+
+.profile-row {
+  margin-bottom: 20px;
+}
+
+.profile-row label {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.profile-row p {
+  font-size: 15px;
+}

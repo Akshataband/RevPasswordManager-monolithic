@@ -1,0 +1,34 @@
+<div class="profile-container" *ngIf="!loading">
+
+  <div class="profile-card">
+
+    <h2>Profile Information</h2>
+
+    <div class="profile-row">
+      <label>Name</label>
+      <p>{{ user?.name }}</p>
+    </div>
+
+    <div class="profile-row">
+      <label>Email</label>
+      <p>{{ user?.email }}</p>
+    </div>
+
+    <div class="profile-row">
+      <label>Username</label>
+      <p>{{ user?.username }}</p>
+    </div>
+
+    <div class="profile-row">
+      <label>Phone</label>
+      <p>{{ user?.phoneNumber || 'Not provided' }}</p>
+    </div>
+
+    <div class="profile-row">
+      <label>Member Since</label>
+      <p>{{ user?.createdAt | date:'medium' }}</p>
+    </div>
+
+  </div>
+
+</div>

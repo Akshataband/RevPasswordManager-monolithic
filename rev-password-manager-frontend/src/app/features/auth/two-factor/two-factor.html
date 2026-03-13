@@ -1,0 +1,62 @@
+<div class="twofactor-container">
+
+  <h2>Two-Factor Authentication</h2>
+
+  <div *ngIf="isLoading">
+    Loading...
+  </div>
+
+  <div *ngIf="!isLoading">
+
+    <p *ngIf="!isEnabled">2FA is currently <strong>DISABLED</strong></p>
+    <p *ngIf="isEnabled">2FA is currently <strong>ENABLED</strong></p>
+
+    <button
+  *ngIf="!isEnabled && !qrCode"
+  class="btn-primary"
+  (click)="enable2FA()"
+  [disabled]="enableLoading">
+
+  {{ enableLoading ? 'Generating QR...' : 'Enable 2FA' }}
+
+</button>
+
+    <!-- QR & Confirm -->
+    <div *ngIf="qrCode" class="qr-section">
+  <img [src]="qrCode" width="200" alt="QR Code" />
+
+  <input
+    type="text"
+    [(ngModel)]="confirmCode"
+    placeholder="Enter OTP"
+  />
+
+  <button class="btn-primary" (click)="confirm2FA()"[disabled]="confirmLoading"> 
+  {{ confirmLoading ? 'Verifying...' : 'Confirm' }} 
+  </button>
+</div>
+
+    <!-- Disable Section -->
+    <div *ngIf="isEnabled">
+
+      <input
+        type="text"
+        [(ngModel)]="disableCode"
+        placeholder="Enter OTP to disable"
+      />
+
+      <button
+        class="btn-outline"
+        (click)="disable2FA()"[disabled]="disableLoading"> 
+  {{ disableLoading ? 'Disabling...' : 'Disable 2FA' }}
+      </button>
+
+    </div>
+
+    <!-- Error -->
+    <div class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+  </div>
+</div>

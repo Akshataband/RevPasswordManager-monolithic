@@ -1,0 +1,23 @@
+package com.RevPasswordManager.repository;
+
+import com.RevPasswordManager.entities.PasswordEntry;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface PasswordEntryRepository
+        extends JpaRepository<PasswordEntry, Long>,
+        JpaSpecificationExecutor<PasswordEntry> {
+
+    List<PasswordEntry> findByUserId(Long userId);
+
+    List<PasswordEntry> findByUserIdAndFavoriteTrue(Long userId);
+
+    List<PasswordEntry> findByUserIdOrderByCreatedAtDesc(Long userId);
+
+    Optional<PasswordEntry> findByIdAndUserId(Long id, Long userId);
+    Optional<PasswordEntry> findByIdAndUserUsername(Long id, String username);
+
+}
