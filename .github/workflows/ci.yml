@@ -22,13 +22,18 @@ jobs:
 
       - name: Build Backend Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/password-manager-backend ./RevPasswordManager/RevPasswordManager
+          docker build \
+            -t ${{ secrets.DOCKER_USERNAME }}/password-manager-backend \
+            -f RevPasswordManager/RevPasswordManager/Dockerfile \
+            RevPasswordManager/RevPasswordManager
 
       - name: Build Frontend Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/password-manager-frontend ./RevPasswordManager_Frontend/rev-password-manager-frontend
-
-      - name: Push Backend Image
+          docker build \
+            -t ${{ secrets.DOCKER_USERNAME }}/password-manager-frontend \
+            -f RevPasswordManager_Frontend/rev-password-manager-frontend/Dockerfile \
+            RevPasswordManager_Frontend/rev-password-manager-frontend
+            - name: Push Backend Image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/password-manager-backend
 
