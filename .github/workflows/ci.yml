@@ -6,12 +6,14 @@ on:
       - main
 
 jobs:
-  build:
+
+  backend:
+    name: Build & Push Backend
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
       - name: Login to DockerHub
@@ -23,20 +25,36 @@ jobs:
       - name: Build Backend Image
         run: |
           docker build \
-            -t ${{ secrets.DOCKER_USERNAME }}/password-manager-backend \
-            -f RevPasswordManager/Dockerfile \
-            RevPasswordManager
-
-      - name: Build Frontend Image
-        run: |
-          docker build \
-            -t ${{ secrets.DOCKER_USERNAME }}/password-manager-frontend \
-            -f RevPasswordManager_Frontend/rev-password-manager-frontend/Dockerfile \
-            RevPasswordManager_Frontend/rev-password-manager-frontend
+          -t ${{ secrets.DOCKER_USERNAME }}/password-manager-backend \
+          -f RevPasswordManager/Dockerfile \
+          RevPasswordManager
 
       - name: Push Backend Image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/password-manager-backend
+
+
+  frontend:
+    name: Build & Push Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Frontend Image
+        run: |
+          docker build \
+          -t ${{ secrets.DOCKER_USERNAME }}/password-manager-frontend \
+          -f RevPasswordManager_Frontend/rev-password-manager-frontend/Dockerfile \
+          RevPasswordManager_Frontend/rev-password-manager-frontend
 
       - name: Push Frontend Image
         run: |
