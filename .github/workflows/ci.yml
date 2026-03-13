@@ -33,7 +33,8 @@ jobs:
             -t ${{ secrets.DOCKER_USERNAME }}/password-manager-frontend \
             -f RevPasswordManager_Frontend/rev-password-manager-frontend/Dockerfile \
             RevPasswordManager_Frontend/rev-password-manager-frontend
-            - name: Push Backend Image
+
+      - name: Push Backend Image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/password-manager-backend
 
