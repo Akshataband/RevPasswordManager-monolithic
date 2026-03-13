@@ -27,15 +27,16 @@ public class SecurityConfig {
                 .cors(cors -> {})
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/auth/register",
-                                "/auth/login",
-                                "/auth/verify-2fa",
-                                "/auth/forgot-password",
-                                "/auth/security-questions/**",
-                                "/v3/api-docs/**",
-                                "/swagger-ui/**"
-                        ).permitAll()
+        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+        .requestMatchers(
+                "/auth/register",
+                "/auth/login",
+                "/auth/verify-2fa",
+                "/auth/forgot-password",
+                "/auth/security-questions/**",
+                "/v3/api-docs/**",
+                "/swagger-ui/**"
+        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session ->
