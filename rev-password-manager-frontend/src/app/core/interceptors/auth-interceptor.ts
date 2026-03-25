@@ -14,7 +14,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   let authReq = req;
 
-  // Do NOT attach token to auth endpoints
   const isAuthRequest =
     req.url.includes('/auth/login') ||
     req.url.includes('/auth/register') ||
@@ -34,11 +33,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
       if (error.status === 401) {
 
-        // Clear session
+
         auth.clearToken();
         auth.clearTempUsername();
 
-        // Avoid redirect loop
+
         if (!router.url.includes('/login')) {
           router.navigate(['/login']);
         }
